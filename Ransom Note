@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<char, int> list;
+
+        for(char i : magazine){
+            if(list.find(i) == list.end())
+                list[i] = 1;
+            else
+                list[i]++;
+        }
+
+        for(char i : ransomNote){
+            if(list.find(i) != list.end() && list[i] > 0)
+                list[i]--;
+            else
+                return false;
+        }
+        return true;
+    }
+};
